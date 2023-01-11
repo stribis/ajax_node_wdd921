@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jquery Ajax Request</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+</head>
+<body>
+  
+  <div class="container">
+
+  </div>
+
+  <script>
+    // $.ajax({
+    //   url: '../00_data/data.json',
+    //   success: function (result) {
+    //     console.log(result)
+    //   }
+
+    // })
+
+    $.getJSON('../00_data/data.json', function (data) {
+      console.log(data)
+    })
+  </script>
+</body>
+</html> 

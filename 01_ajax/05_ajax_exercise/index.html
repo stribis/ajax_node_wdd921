@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AJAX Exercise (Fetch - Async Await)</title>
+  <style>
+    .gallery {
+      margin: 0 auto;
+      width: 600px;
+    }
+
+    .big-view {
+      width: 600px;
+    }
+
+    .big-view img { 
+      width: 100%;
+      height: auto;
+    }
+
+    .thumbnails {
+      width: 600px;
+      display: grid;
+      grid-template-columns: repeat(3, 150px);
+      gap: 1rem;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="gallery">
+    <div class="big-view">
+
+    </div>
+    <div class="thumbnails">
+
+    </div>
+  </div>
+
+
+
+  <script>
+    const url = 'https://jsonplaceholder.typicode.com/photos'
+
+    getData()
+    async function getData ( ) {
+      const response = await fetch(url)
+      const data = await response.json()
+      loadData(data)
+    }
+
+    function loadData (data) {
+      //Display Thumbnails
+      for(let i = 0; i < 9; i++) {
+        document.querySelector('.thumbnails').innerHTML += `<img class="thumb" data-id="${data[i].id}" src="${data[i].thumbnailUrl}">`
+      }
+
+      // Load first image
+      document.querySelector('.big-view').innerHTML = `<img class="big" data-id="${data[0].id}" src="${data[0].url}">`
+
+
+      document.querySelector('.thumbnails').addEventListener('click', e=> {
+        const dataID = e.target.dataset.id
+        document.querySelector('.big-view').innerHTML = `<img class="big" data-id="${dataID}" src="${data[dataID-1].url}">`
+      })
+    }
+
+
+  </script>
+</body>
+</html>
