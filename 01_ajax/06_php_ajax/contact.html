@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Form</title>
+</head>
+<body>
+  
+
+  <form method="post">
+    <label for="first-name">First Name</label><br>
+    <input type="text" id="first-name" name="first-name"> <br>
+    <label for="last-name">Last Name</label><br>
+    <input type="text" id="last-name" name="last-name"> <br>
+    <label for="email">Email</label><br>
+    <input type="email" id="email" name="email"> <br>
+    <label for="message">Message</label><br>
+    <textarea name="message" id="message" cols="30" rows="10"></textarea><br>
+    <button type="submit">Send</button>
+  </form>
+
+
+  <script>
+
+    document.querySelector('form').addEventListener('submit', (e) => {
+      e.preventDefault()
+
+      const fd =  new FormData (document.querySelector('form'))
+      sendData(fd)
+
+      async function sendData (formData) {
+        const response = await fetch('script.php', {method: 'POST', body: formData})
+        const data = await response.json()
+
+        console.log(data)
+
+        handleData (data)
+      }
+ 
+    })
+
+
+    function handleData (data) {
+      if(document.querySelector('.error-message')) {
+        document.querySelector('.error-message').remove()
+      }
+      if ( data[0] == 'error') {
+
+        const error = document.createElement('span')
+        error.classList.add('error-message')
+        error.style.color = 'red'
+        error.innerText = `Error: ${data[1]}`
+        document.querySelector('form').after(error)
+      }
+    }
+  </script>
+</body>
+</html>
