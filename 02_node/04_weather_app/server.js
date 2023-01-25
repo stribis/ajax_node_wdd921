@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
 app.post('/', (req, res) => {
   const city = req.body.city
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=en`
-  getData(url, res)
+  getData(url, res, city)
   
 })
 
@@ -35,12 +35,15 @@ app.listen(3000, () => {
   console.log('Server has started 😀 : http://localhost:3000')
 })
 
-// Fetch Request for Openweathermap API
-async function getData (url, res) {
+// Fetch Request for Openweathermap API 
+async function getData (url, res, city) {
   try {
     const response = await fetch(url)
     const data = await response.json()
-  
+    
+    const responseCountry = await fetch (`https://restcountries.com/v3.1/alpha/${data.sys.country}`)
+    const dataCountry = await responseCountry.json()
+    console.log(dataCountry)
 
     if ( data.cod === '404') {
       res.render('index.ejs', {
@@ -48,11 +51,15 @@ async function getData (url, res) {
         error: 'The city was not found in the API'
       })
     } else {
+      console.log(data)
       const datapack = {
         temp: data.main.temp,
         description: data.weather[0].description,
         icon: data.weather[0].icon,
-        feels: data.main.feels_like
+        feels: data.main.feels_like,
+        city: city,
+        country: dataCountry[0].name.common,
+        flag: dataCountry[0].flag
       }
     
       res.render('index.ejs', {
@@ -69,3 +76,4 @@ async function getData (url, res) {
   }
 
 }
+

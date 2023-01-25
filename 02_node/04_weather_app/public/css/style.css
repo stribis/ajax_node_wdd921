@@ -66,7 +66,7 @@ input[type="submit"] {
 
 .display {
   font-size: 3rem;
-  margin: 2rem auto;
+  margin: 0 auto;
   color: #555;
 }
 
@@ -92,4 +92,12 @@ input[type="submit"] {
 .description {
   text-transform: capitalize;
   font-size: 2rem;
+}
+
+.plain.top {
+  margin-top: 1rem;
+}
+
+.plain.bottom {
+  margin-bottom: 1rem;
 }
