@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
 
 app.post('/', (req, res) => {
   const city = req.body.city
-  const url = `https://api.openweatherma.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=en`
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=en`
   getData(url, res)
   
 })
