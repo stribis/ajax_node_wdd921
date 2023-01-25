@@ -1,19 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+<%- include('partials/head') %>
 <body>
   <% const name = 'Martin' %>
-  <nav>
-    <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">About</a></li>
-    </ul>
-  </nav>
+  <%- include('partials/nav') %>
+
   <header>
     <h1><%= name %> is using EJS</h1>
   </header>
@@ -21,7 +12,15 @@
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis quisquam, nemo doloremque commodi temporibus quae?</p>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis quisquam, nemo doloremque commodi temporibus quae?</p>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis quisquam, nemo doloremque commodi temporibus quae?</p>
+
+    <ul>
+      <% students.forEach(student => { %>
+        <li><%= student.name %> got a <%= student.note %></li>
+      <% }) %>
+    </ul>
+
   </main>
-  <footer>&copy; Copyright Foo</footer>
+  <%- include('partials/footer') %>
+  
 </body>
 </html>
