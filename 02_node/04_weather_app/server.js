@@ -31,8 +31,8 @@ app.post('/', (req, res) => {
 })
 
 
-app.listen(3000, () => {
-  console.log('Server has started 😀 : http://localhost:3000')
+app.listen(3001, () => {
+  console.log('Server has started 😀 : http://localhost:3001')
 })
 
 // Fetch Request for Openweathermap API 
@@ -53,6 +53,7 @@ async function getData (url, res, city) {
     } else {
       console.log(data)
       const datapack = {
+        id : data.weather[0].id,
         temp: data.main.temp,
         description: data.weather[0].description,
         icon: data.weather[0].icon,

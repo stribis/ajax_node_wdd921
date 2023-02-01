@@ -1,14 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="light" lang="en">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Weather App 921</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="images/favicon/site.webmanifest">
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.12/css/weather-icons.min.css">
 </head>
 <body>
   <div class="container">
+    <div class="toggle-container">
+      <button class="theme-btn light" onclick="setTheme('light')" title="Light mode">
+        <i class="wi-day-sunny wi"></i>
+      </button>
+      <button class="theme-btn dark" onclick="setTheme('dark')" title="Dark mode">
+        <i class="wi-moon-waxing-crescent-4 wi"></i>
+      </button>
+    </div>
     <form action="/" method="post">
       <input type="text" name="city" id="city" placeholder="Enter a city" required>
       <% if (error != null){ %>
@@ -22,14 +35,11 @@
       <div class="display"><%= Math.round(data.temp) %>°C</div>
       <p class="plain bottom">in <%= data.city %>, <%= data.country %> <%= data.flag%></p>
       <p class="feels">Feels like <%= Math.round(data.feels) %>°C</p>
-      <img src="http://openweathermap.org/img/wn/<%= data.icon %>@2x.png" alt="<%= data.description %>">
+      <i class="icon wi wi-owm-<%= data.id %>"></i>
       <p class="description"><%= data.description %></p>
     <% } %>
 
-    
-
-
-
   </div>
+  <script src="js/code.js"></script>
 </body>
 </html>

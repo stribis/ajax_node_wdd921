@@ -1,3 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Open+Sans:wght@300;400&family=Passion+One&display=swap');
+
+:root,
+:root.light {
+  --bg-color: #fff;
+  --pri-color: #555;
+  --sec-color: #123;
+  --ter-color: #777;
+}
+
+:root.dark {
+  --bg-color: #222;
+  --pri-color: rgb(250, 250, 250);
+  --sec-color: rgb(213, 213, 213);
+  --ter-color: rgb(165, 165, 165);
+}
+
 /* Small Reset */
 *::before, *::after, * {
   box-sizing: border-box;
@@ -6,6 +23,7 @@
 }
 
 body {
+  background: var(--bg-color);
   font-family: 'Lato', sans-serif;
 }
 
@@ -40,8 +58,8 @@ input[type="text"] {
   border: 0;
   outline: none;
   width: 100%;
-  color: #555;
-  background: #fff;
+  color: var(--pri-color);
+  background: var(--bg-color);
   padding: 10px 15px;
   margin: 30px auto;
   border-bottom: 1px solid #ddd;
@@ -61,24 +79,24 @@ input[type="submit"] {
   min-width: 350px;
   transition: 0.2s ease-in-out;
   font-size: 1.4rem;
-  color: #555;
+  color: var(--pri-color);
 }
 
 .display {
-  font-size: 3rem;
+  font-size: 5rem;
   margin: 0 auto;
-  color: #555;
+  color: var(--pri-color);
 }
 
 .icon {
-  max-width: 190px;
-  display: block;
-  margin: 0 auto;
+  font-size: 5rem;
+  color: rgb(90, 90, 255);
 }
 
 .feels {
-  color: #777;
+  color: var(--ter-color);
   font-size: 0.8rem;
+  margin-bottom: 1rem;
 }
 .error {
   font-size: 0.9rem;
@@ -92,6 +110,11 @@ input[type="submit"] {
 .description {
   text-transform: capitalize;
   font-size: 2rem;
+  color: var(--pri-color);
+}
+
+.plain {
+  color: var(--sec-color);
 }
 
 .plain.top {
@@ -99,5 +122,27 @@ input[type="submit"] {
 }
 
 .plain.bottom {
-  margin-bottom: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+.toggle-container button {
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  color: var(--pri-color);
+}
+
+.theme-btn.light {
+  display: none;
+}
+
+.dark .theme-btn.dark {
+  display: none;
+}
+
+.dark .theme-btn.light {
+  display: block;
 }
