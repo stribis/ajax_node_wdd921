@@ -10,6 +10,7 @@ function setup () {
 
 
 let lat, lon, temp, description
+// TODO: AQI
 
 if ('geolocation' in navigator) {
   // console.log(navigator)
@@ -17,7 +18,6 @@ if ('geolocation' in navigator) {
   navigator.geolocation.getCurrentPosition(async position => {
 
     try {
-      // TODO: error handling 
 
       lat = position.coords.latitude
       lon = position.coords.longitude
@@ -49,5 +49,37 @@ if ('geolocation' in navigator) {
 } else { 
   console.error('Browser does not support Geolocation')
 }
+
+document.querySelector('form button').addEventListener('click', async (e) => {
+  e.preventDefault()
+
+  // Read mood from input
+  const mood = document.querySelector('#mood').value
+
+  // Get image as base64 
+  video.loadPixels()
+  const image64 = video.canvas.toDataURL()
+
+  // TODO: ADD AQI DATA
+  const data = {
+    mood,
+    temp,
+    description,
+    image64
+  }
+
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  }
+
+  const response = await fetch('/api', options)
+  const json = await response.json()
+
+  console.log(json)
+})
 
 }
